@@ -1,0 +1,63 @@
+﻿<Window x:Class="VetClinic.ClientListWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VetClinic"
+        mc:Ignorable="d"
+        Title="Список пациентов" Height="450" Width="800">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="7"
+                                Background="{TemplateBinding Background}">
+
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Label Content="Список пациентов" HorizontalAlignment="Left" Margin="156,10,0,0" 
+            VerticalAlignment="Top" FontSize="20" FontFamily="Times New Roman" FontWeight="Bold" RenderTransformOrigin="0.566,-0.029"/>
+        <StackPanel Background="#FFE9FFD0" Margin="0,0,666,0">
+            <Label Content="" HorizontalAlignment="Center" FontFamily="Times New Roman" Margin="0,15,0,20" FontSize="16" Width="36" >
+                <Label.Background>
+                    <ImageBrush ImageSource="/Resources/Images/menu30.png" Stretch="UniformToFill" TileMode="None"/>
+                </Label.Background>
+            </Label>
+            <Button x:Name="AddClientBtn" Content="Добавить" Background="#FF08BF57" FontFamily="Times New Roman" BorderBrush="#FF0AEF38" Margin="0,0,0,5" FontSize="14" Click="AddClientBtn_Click"/>
+            <Label Content="Поиск" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,20,0,0" FontFamily="Times New Roman" FontSize="14"/>
+            <TextBox TextWrapping="Wrap" Text="" Width="122" BorderBrush="{x:Null}"/>
+            <Label Content="Сортировка" FontFamily="Times New Roman" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,20,0,0"/>
+            <ComboBox Width="121" BorderBrush="{x:Null}" Background="White" FontFamily="Times New Roman" FontSize="14" HorizontalAlignment="Stretch"/>
+
+        </StackPanel>
+        <DataGrid  x:Name="dataGridClientList" HorizontalAlignment="Left" Margin="146,69,0,0" Width="627"
+                   VerticalAlignment="Top" AutoGenerateColumns="False" Background="White" 
+                   FontFamily="Times New Roman" Height="337">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Кличка" Binding="{Binding AnName}"/>
+                <DataGridTextColumn Header="Возраст" Binding="{Binding Ag}"/>
+                <DataGridTextColumn Header="Пол" Binding="{Binding Gen}"/>
+                <DataGridTextColumn Header="Тип животного" Binding="{Binding TypeAn}"/>
+                <DataGridTextColumn Header="ФИО владельца" Binding="{Binding OwName}"/>
+                <DataGridTextColumn Header="Телефон" Binding="{Binding Tel}"/>
+                <DataGridTemplateColumn Header="Изменить">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="edBut" Tag="{Binding idAnim}" Content="Изменить" Background="#FF228B22"
+                                    Foreground="#FFFAFFAB" Click="edBut_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </Grid>
+</Window>
